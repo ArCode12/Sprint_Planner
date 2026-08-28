@@ -76,6 +76,7 @@ function renderCard(card) {
   el.style.background = card.color;
   el.innerHTML = `<div class="card-title"></div>`;
   el.querySelector(".card-title").textContent = card.title;
+  el.addEventListener("click", () => openModal(card.columnId, card));
   return el;
 }
 
@@ -98,6 +99,21 @@ const detailInput = document.getElementById("cardDetailInput");
 const swatchesEl = document.getElementById("swatches");
 const saveCardBtn = document.getElementById("saveCardBtn");
 const cancelModalBtn = document.getElementById("cancelModalBtn");
+const deleteCardBtn = document.getElementById("deleteCardBtn");
+
+deleteCardBtn.addEventListener("click", () => {
+  fetch("update_card.php", {
+    method: "POST",
+    body: JSON.stringify({ action: "delete", id: editingCardId })
+  })
+    .then(response => response.json())
+    .then(result => {
+      if (result.success) {
+        closeModal();
+        loadCards();
+      }
+    });
+});
 
 let selectedColumnId = null;
 let selectedColor = DEFAULT_CARD_COLOR;
@@ -115,11 +131,15 @@ CARD_COLORS.forEach(color => {
   swatchesEl.appendChild(sw);
 });
 
-function openModal(columnId) {
+let editingCardId = null;
+
+function openModal(columnId, existingCard) {
   selectedColumnId = columnId;
-  selectedColor = DEFAULT_CARD_COLOR;
-  titleInput.value = "";
+  editingCardId = existingCard ? existingCard.id : null;
+  selectedColor = existingCard ? existingCard.color : DEFAULT_CARD_COLOR;
+  titleInput.value = existingCard ? existingCard.title : "";
   detailInput.value = "";
+  deleteCardBtn.hidden = !existingCard;
   backdrop.classList.add("open");
 }
 
@@ -133,13 +153,15 @@ saveCardBtn.addEventListener("click", () => {
   const title = titleInput.value.trim();
   if (!title) return;
 
-  fetch("add_card.php", {
+  const isEditing = editingCardId !== null;
+  const url = isEditing ? "update_card.php" : "add_card.php";
+  const body = isEditing
+    ? { action: "update", id: editingCardId, title: title, color: selectedColor }
+    : { title: title, column_name: selectedColumnId, color: selectedColor };
+
+  fetch(url, {
     method: "POST",
-    body: JSON.stringify({
-      title: title,
-      column_name: selectedColumnId,
-      color: selectedColor
-    })
+    body: JSON.stringify(body)
   })
     .then(response => response.json())
     .then(result => {

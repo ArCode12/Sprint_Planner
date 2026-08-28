@@ -3,6 +3,18 @@
 All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
+
+## delete cards
+- Reused the same `openModal` form for both adding and editing — the Save button checks whether an existing card was passed in (`editingCardId`) and calls `add_card.php` or `update_card.php` accordingly
+- Added `update_card.php` to handle both editing and deleting a card in a single file, based on an `action` field sent from the browser (`"delete"` vs. anything else defaults to an update)
+- Used `(int)` type casting on the incoming card `id` before using it in SQL, since it's inserted directly into the query without `mysqli_real_escape_string` — casting to an integer prevents anything except a plain number reaching the database
+- `DELETE` removes a single row by `id`; `UPDATE` changes only `title` and `color`, leaving `column_name` untouched so the card stays in place
+- Delete button only appears when editing an existing card, not when adding a new one
+- Added the "+ Add card" feature — clicking "+ Add card" on any column opens a form, and saving it sends the new card to `add_card.php`, which stores it in the database; the board then reloads to show it
+- Fixed a JavaScript syntax error (a stray character left in `script.js`) that was breaking the whole board after the add-card code was introduced
+
+
+## Add & edit cards
 - Added the "+ Add card" feature — clicking "+ Add card" on any column opens a form, and saving it sends the new card to `add_card.php`, which stores it in the database; the board then reloads to show it
 - Fixed a JavaScript syntax error (a stray character left in `script.js`) that was breaking the whole board after the add-card code was introduced
 
