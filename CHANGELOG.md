@@ -4,6 +4,12 @@ All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
 
+## Drag and drop between columns
+- Cards are now draggable (`draggable = true`), storing the card's `id` on `dragstart` via `e.dataTransfer`
+- Each column's card area listens for `dragover` (with `preventDefault()`, required to allow dropping at all) and `drop`, which reads back the card's `id` and calls `moveCard()`
+- Extended `update_card.php` with a third `"move"` action, which updates only `column_name`, leaving the card's title and color untouched
+
+
 ## delete cards
 - Reused the same `openModal` form for both adding and editing — the Save button checks whether an existing card was passed in (`editingCardId`) and calls `add_card.php` or `update_card.php` accordingly
 - Added `update_card.php` to handle both editing and deleting a card in a single file, based on an `action` field sent from the browser (`"delete"` vs. anything else defaults to an update)

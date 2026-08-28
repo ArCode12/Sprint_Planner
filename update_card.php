@@ -8,6 +8,9 @@
 
   if ($action === "delete") {
     $sql = "DELETE FROM cards WHERE id = $id";
+  } elseif ($action === "move") {
+    $column_name = mysqli_real_escape_string($conn, $data["column_name"]);
+    $sql = "UPDATE cards SET column_name = '$column_name' WHERE id = $id";
   } else {
     $title = mysqli_real_escape_string($conn, $data["title"]);
     $color = mysqli_real_escape_string($conn, $data["color"]);

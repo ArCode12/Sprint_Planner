@@ -58,6 +58,16 @@ function render() {
       colEl.querySelector(".column-add").addEventListener("click", () => openModal(col.id));
     const bodyEl = colEl.querySelector(".col-body");
 
+    bodyEl.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    bodyEl.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const cardId = e.dataTransfer.getData("text/plain");
+      moveCard(cardId, col.id);
+    });
+
     if (colCards.length === 0) {
       const hint = document.createElement("div");
       hint.className = "empty-hint";
@@ -74,9 +84,13 @@ function renderCard(card) {
   const el = document.createElement("article");
   el.className = "card";
   el.style.background = card.color;
+  el.draggable = true;
   el.innerHTML = `<div class="card-title"></div>`;
   el.querySelector(".card-title").textContent = card.title;
-  el.addEventListener("click", () => openModal(card.columnId, card));
+  el.addEventListener("click", () => openModal(card.column_name, card));
+  el.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text/plain", card.id);
+  });
   return el;
 }
 
@@ -84,6 +98,19 @@ function escapeHtml(str) {
   const div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
+}
+
+function moveCard(cardId, newColumnId) {
+  fetch("update_card.php", {
+    method: "POST",
+    body: JSON.stringify({ action: "move", id: cardId, column_name: newColumnId })
+  })
+    .then(response => response.json())
+    .then(result => {
+      if (result.success) {
+        loadCards();
+      }
+    });
 }
 
 /* ---------- Init ---------- */
