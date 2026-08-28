@@ -4,6 +4,11 @@ All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
 
+## Visual polish
+- Restyled cards to look like sticky notes: no border, offset drop shadow, alternating slight rotation per card (`nth-child(odd)`/`nth-child(even)`), and a folded-corner detail via a `::after` pseudo-element
+- Added a hover state: cards straighten, lift, and scale up slightly, with `z-index` raised so they sit above neighboring tilted cards
+- Added a colored top accent bar per column via a `--accent` CSS variable, set per-column in JavaScript and read by `style.css` — makes each stage visually distinct at a glance
+- Added a generated SVG favicon (no image file needed) matching the board's blue
 ## Drag and drop between columns
 - Cards are now draggable (`draggable = true`), storing the card's `id` on `dragstart` via `e.dataTransfer`
 - Each column's card area listens for `dragover` (with `preventDefault()`, required to allow dropping at all) and `drop`, which reads back the card's `id` and calls `moveCard()`

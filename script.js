@@ -1,11 +1,11 @@
 /* Sprint Planner — fetches cards from the database via get_cards.php */
 
 const STAGE_COLUMNS = [
-  { id: "backlog", name: "Backlog" },
-  { id: "todo", name: "To Do" },
-  { id: "coding", name: "Coding in progress" },
-  { id: "testing", name: "Testing in progress" },
-  { id: "done", name: "Done" },
+  { id: "backlog", name: "Backlog", accent: "#94A3B8" },
+  { id: "todo", name: "To Do", accent: "#0B5FA5" },
+  { id: "coding", name: "Coding in progress", accent: "#D97706" },
+  { id: "testing", name: "Testing in progress", accent: "#7C3AED" },
+  { id: "done", name: "Done", accent: "#16A34A" },
 ];
 
 const DEFAULT_CARD_COLOR = "#F6E58D";
@@ -45,8 +45,9 @@ function render() {
   STAGE_COLUMNS.forEach(col => {
     const colCards = cards.filter(c => c.column_name === col.id);
 
-    const colEl = document.createElement("div");
+        const colEl = document.createElement("div");
     colEl.className = "col stage";
+    colEl.style.setProperty("--accent", col.accent);
     colEl.innerHTML = `
       <div class="col-head">
         <span>${escapeHtml(col.name)}</span>
@@ -55,6 +56,7 @@ function render() {
       <div class="col-body" data-column-id="${col.id}"></div>
       <button class="column-add">+ Add card</button>
     `;
+    
       colEl.querySelector(".column-add").addEventListener("click", () => openModal(col.id));
     const bodyEl = colEl.querySelector(".col-body");
 
