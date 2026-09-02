@@ -3,6 +3,10 @@
 All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
+- Signup now logs the user in immediately instead of redirecting to a separate login step — uses `mysqli_insert_id()` to get the new user's `id` right after inserting, then sets `$_SESSION` directly in `signup.php`
+- Made `email` optional at signup: an empty field is stored as SQL `NULL` rather than an empty string, so the `UNIQUE` constraint doesn't block multiple users from all leaving it blank
+- Fixed a mismatched form field name (`email` vs `identifier`) that broke login after switching to username-or-email login
+- Wrapped the signup database insert in `try/catch (mysqli_sql_exception)`, since newer PHP throws an exception on a duplicate entry instead of just returning `false`
 
 ## Visual polish
 - Restyled cards to look like sticky notes: no border, offset drop shadow, alternating slight rotation per card (`nth-child(odd)`/`nth-child(even)`), and a folded-corner detail via a `::after` pseudo-element
