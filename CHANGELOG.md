@@ -3,6 +3,15 @@
 All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
+
+## Login and session gating
+- `index.php` now checks `$_SESSION["user_id"]` at the very top and redirects to `login.php` if nobody is logged in, before any board HTML is sent
+- Added a header row showing the logged-in user's name and a Log out link
+- Added `logout.php` — destroys the session and redirects to `login.php`
+- Fixed `<a>` tag styling so the Log out link visually matches the app's other buttons
+
+## User accounts 
+
 - Signup now logs the user in immediately instead of redirecting to a separate login step — uses `mysqli_insert_id()` to get the new user's `id` right after inserting, then sets `$_SESSION` directly in `signup.php`
 - Made `email` optional at signup: an empty field is stored as SQL `NULL` rather than an empty string, so the `UNIQUE` constraint doesn't block multiple users from all leaving it blank
 - Fixed a mismatched form field name (`email` vs `identifier`) that broke login after switching to username-or-email login

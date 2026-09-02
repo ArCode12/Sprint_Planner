@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+  session_start();
+  if (!isset($_SESSION["user_id"])) {
+    header("Location: login.php");
+    exit;
+  }
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +21,13 @@
 <body>
 
 <div class="page">
-    <h1 class="page-title">Sprint Planner</h1>
+    <div class="page-header">
+        <h1 class="page-title">Sprint Planner</h1>
+        <div class="user-area">
+            <span class="user-badge">Hi, <?php echo htmlspecialchars($_SESSION["user_name"]); ?></span>
+            <a href="logout.php" class="btn ghost">Log out</a>
+        </div>
+    </div>
     <div class="board-table" id="boardTable"></div>
 </div>
 
