@@ -87,13 +87,30 @@ function renderCard(card) {
   el.className = "card";
   el.style.background = card.color;
   el.draggable = true;
-  el.innerHTML = `<div class="card-title"></div>`;
+
+  const priorityLabel = card.priority
+    ? card.priority.charAt(0).toUpperCase() + card.priority.slice(1)
+    : "Medium";
+
+  el.innerHTML = `
+    <div class="card-title"></div>
+    <div class="card-meta">
+      <span class="priority-badge priority-${card.priority || "medium"}">${priorityLabel}</span>
+      ${card.due_date ? `<span class="due-date">${formatDate(card.due_date)}</span>` : ""}
+    </div>
+  `;
   el.querySelector(".card-title").textContent = card.title;
+
   el.addEventListener("click", () => openModal(card.column_name, card));
   el.addEventListener("dragstart", (e) => {
     e.dataTransfer.setData("text/plain", card.id);
   });
   return el;
+}
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }
 
 function escapeHtml(str) {
@@ -125,6 +142,8 @@ loadCards();
 const backdrop = document.getElementById("modalBackdrop");
 const titleInput = document.getElementById("cardTitleInput");
 const detailInput = document.getElementById("cardDetailInput");
+const dueDateInput = document.getElementById("cardDueDateInput");
+const priorityInput = document.getElementById("cardPriorityInput");
 const swatchesEl = document.getElementById("swatches");
 const saveCardBtn = document.getElementById("saveCardBtn");
 const cancelModalBtn = document.getElementById("cancelModalBtn");
@@ -168,6 +187,8 @@ function openModal(columnId, existingCard) {
   selectedColor = existingCard ? existingCard.color : DEFAULT_CARD_COLOR;
   titleInput.value = existingCard ? existingCard.title : "";
   detailInput.value = "";
+  dueDateInput.value = existingCard && existingCard.due_date ? existingCard.due_date : "";
+  priorityInput.value = existingCard && existingCard.priority ? existingCard.priority : "medium";
   deleteCardBtn.hidden = !existingCard;
   backdrop.classList.add("open");
 }
@@ -182,12 +203,15 @@ saveCardBtn.addEventListener("click", () => {
   const title = titleInput.value.trim();
   if (!title) return;
 
+  const dueDate = dueDateInput.value || null;
+  const priority = priorityInput.value;
+
   const isEditing = editingCardId !== null;
   const url = isEditing ? "update_card.php" : "add_card.php";
   const body = isEditing
-    ? { action: "update", id: editingCardId, title: title, color: selectedColor }
-    : { title: title, column_name: selectedColumnId, color: selectedColor };
-
+    ? { action: "update", id: editingCardId, title: title, color: selectedColor, due_date: dueDate, priority: priority }
+    : { title: title, column_name: selectedColumnId, color: selectedColor, due_date: dueDate, priority: priority };
+  
   fetch(url, {
     method: "POST",
     body: JSON.stringify(body)

@@ -14,7 +14,12 @@
   } else {
     $title = mysqli_real_escape_string($conn, $data["title"]);
     $color = mysqli_real_escape_string($conn, $data["color"]);
-    $sql = "UPDATE cards SET title = '$title', color = '$color' WHERE id = $id";
+    $priority = mysqli_real_escape_string($conn, $data["priority"]);
+
+    $due_date = $data["due_date"];
+    $due_date_value = $due_date === null ? "NULL" : "'" . mysqli_real_escape_string($conn, $due_date) . "'";
+
+    $sql = "UPDATE cards SET title = '$title', color = '$color', due_date = $due_date_value, priority = '$priority' WHERE id = $id";
   }
 
   if (mysqli_query($conn, $sql)) {

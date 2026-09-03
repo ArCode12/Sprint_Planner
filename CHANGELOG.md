@@ -4,6 +4,12 @@ All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
 
+## Due dates and priority labels
+- Added `due_date` (optional `DATE`) and `priority` (`low`/`medium`/`high`, defaults to `medium`) columns to the `cards` table
+- Added a date picker and priority dropdown to the Add/Edit card modal
+- `add_card.php` and `update_card.php` both handle an empty due date the same way email was handled at signup — stored as SQL `NULL` rather than an empty string
+- Cards now display a colored priority badge (green/amber/red for low/medium/high) and a formatted due date (e.g. "Mar 15") when one is set
+
 ## Layout and card refinements
 - Switched the board from a scrolling flex row to a CSS grid (`repeat(6, minmax(0, 1fr))`), so all 6 columns always fit the available width with no horizontal scrolling
 - Removed the tilted rotation on cards — straightened into plain rectangles, with more padding and a minimum height so they read as proper sticky notes rather than thin strips

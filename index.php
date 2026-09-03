@@ -43,6 +43,18 @@
             <textarea id="cardDetailInput" maxlength="500" rows="3" placeholder="Notes, acceptance criteria, links..."></textarea>
         </label>
         <label class="field">
+            <span>Due date <em>(optional)</em></span>
+            <input type="date" id="cardDueDateInput">
+        </label>
+        <label class="field">
+            <span>Priority</span>
+            <select id="cardPriorityInput">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+            </select>
+        </label>
+        <label class="field">
             <span>Card color</span>
             <div class="swatches" id="swatches"></div>
         </label>
