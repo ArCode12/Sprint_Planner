@@ -4,6 +4,12 @@ All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
 
+## Layout and card refinements
+- Switched the board from a scrolling flex row to a CSS grid (`repeat(6, minmax(0, 1fr))`), so all 6 columns always fit the available width with no horizontal scrolling
+- Removed the tilted rotation on cards — straightened into plain rectangles, with more padding and a minimum height so they read as proper sticky notes rather than thin strips
+- Redesigned the page header: larger title, a bottom border separating it from the board, and better spacing between the user badge and Log out button
+- Fixed the Log out button styling — the `a.btn.ghost` rule for turning the `<a>` tag into a proper-looking button hadn't actually been saved in an earlier step
+
 ## Project documentation
 - Added `DEBUGGING.md` — a log of every real bug encountered during development, with symptoms, causes, and fixes, for future reference
 - Added `PLANNING.md` — a short project plan covering purpose, current features, planned features, tech decisions, and what's explicitly out of scope for now
