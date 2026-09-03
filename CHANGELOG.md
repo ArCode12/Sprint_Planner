@@ -4,6 +4,13 @@ All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
 
+## Project documentation
+- Added `DEBUGGING.md` — a log of every real bug encountered during development, with symptoms, causes, and fixes, for future reference
+- Added `PLANNING.md` — a short project plan covering purpose, current features, planned features, tech decisions, and what's explicitly out of scope for now
+
+## Removed Javascript files
+- Removed `login.js` and `signup.js` — no longer used after switching signup/login to plain PHP form submissions instead of JavaScript/fetch
+
 
 ## Login and session gating
 - `index.php` now checks `$_SESSION["user_id"]` at the very top and redirects to `login.php` if nobody is logged in, before any board HTML is sent
