@@ -4,11 +4,13 @@ All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
 
+
 ## Login and session gating
 - `index.php` now checks `$_SESSION["user_id"]` at the very top and redirects to `login.php` if nobody is logged in, before any board HTML is sent
 - Added a header row showing the logged-in user's name and a Log out link
 - Added `logout.php` — destroys the session and redirects to `login.php`
 - Fixed `<a>` tag styling so the Log out link visually matches the app's other buttons
+- Removed `login.js` and `signup.js` — no longer used after switching signup/login to plain PHP form submissions instead of JavaScript/fetch
 
 ## User accounts 
 
