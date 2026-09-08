@@ -4,6 +4,14 @@ All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
 
+## Per-user data scoping
+- Added a `user_id` column to the `cards` table, linking every card to the account that created it
+- Assigned existing pre-login cards to a specific test account so nothing was lost
+- `get_cards.php` now only fetches cards belonging to the logged-in user (`WHERE user_id = ...`), instead of every card in the table
+- `add_card.php` now saves the logged-in user's `id` on every new card
+- `update_card.php`'s update, move, and delete actions all now require `AND user_id = ...` matching the logged-in user — so a card's `id` alone isn't enough to edit or delete it; it must actually belong to that user
+- Verified correct behavior by testing with two separate accounts in genuinely separate sessions (a normal window + a guest window)
+
 ## Due dates and priority labels
 - Added `due_date` (optional `DATE`) and `priority` (`low`/`medium`/`high`, defaults to `medium`) columns to the `cards` table
 - Added a date picker and priority dropdown to the Add/Edit card modal
