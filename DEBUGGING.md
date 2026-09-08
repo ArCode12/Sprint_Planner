@@ -3,6 +3,12 @@
 A record of real issues found and fixed while building this project, in the order they happened. Kept for learning purposes — most bugs here are common early-PHP/JS mistakes, and this is a reference for what they looked like and how they were diagnosed.
 
 ---
+### Cards appeared to swap between users when testing with two tabs
+**Symptom:** Logged in as one user in one browser tab, then a different user in a second tab — refreshing the first tab showed the second user's cards instead of the first user's.
+**Cause:** Not an actual bug. PHP sessions are tied to the browser as a whole, not to individual tabs — logging in as a second user in one tab overwrites the session cookie for the *entire* browser, silently switching every open tab to that same logged-in user.
+**Fix:** No code change needed. Confirmed by testing with two properly separate sessions instead — one normal window plus one incognito/private window (each gets its own separate cookies).
+**Lesson:** To test multi-user behavior correctly, always use two separate browser sessions (incognito, or two different browsers) — never two tabs in the same browser, since they always share one login.
+
 
 ### Empty `index.php` after editing
 **Symptom:** Page showed nothing at all.

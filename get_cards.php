@@ -1,9 +1,12 @@
 <?php 
+    session_start(); 
     include "db_connect.php"; 
 
     mysqli_select_db($conn, "sprint_planner"); 
 
-    $sql = "SELECT * FROM cards"; 
+    $user_id = $_SESSION["user_id"]; 
+
+    $sql = "SELECT * FROM cards WHERE user_id = $user_id"; 
     $result = mysqli_query($conn, $sql); 
 
     $cards = []; 
