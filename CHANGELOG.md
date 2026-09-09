@@ -9,7 +9,7 @@ All notable changes to this project, documented in the order they were built.
 - `index.php` redirects logged-in users straight to `board.php`; `login.php` and `signup.php` now redirect to `board.php` on success instead of the old `index.php`
 - Added a hero section, feature highlights, and a yellow accent badge to the home page
 - Added `demo.php` + `demo.js` — a fully interactive board (add, edit, delete, drag-and-drop, due dates, priority) for logged-out visitors to try, with all data kept in a JavaScript array only — no `fetch`, no database, resets on every refresh
-
+- Fixed a gap where `board.php` was never actually created during the home page restructure — `index.php` and `login.php` were already pointing to it, but the file itself didn't exist yet. Recreated it with the original board markup (header, user badge, logout, add/edit modal) pointing to the existing `script.js`.
 
 ## Per-user data scoping
 - Added a `user_id` column to the `cards` table, linking every card to the account that created it
