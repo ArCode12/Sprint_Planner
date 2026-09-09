@@ -4,6 +4,13 @@ All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
 
+## Public home page and demo board
+- Split the old `index.php` (which was the board) into `board.php` (the real, saving board) and a new `index.php` (a logged-out marketing home page)
+- `index.php` redirects logged-in users straight to `board.php`; `login.php` and `signup.php` now redirect to `board.php` on success instead of the old `index.php`
+- Added a hero section, feature highlights, and a yellow accent badge to the home page
+- Added `demo.php` + `demo.js` — a fully interactive board (add, edit, delete, drag-and-drop, due dates, priority) for logged-out visitors to try, with all data kept in a JavaScript array only — no `fetch`, no database, resets on every refresh
+
+
 ## Per-user data scoping
 - Added a `user_id` column to the `cards` table, linking every card to the account that created it
 - Assigned existing pre-login cards to a specific test account so nothing was lost
