@@ -3,6 +3,20 @@
 A record of real issues found and fixed while building this project, in the order they happened. Kept for learning purposes — most bugs here are common early-PHP/JS mistakes, and this is a reference for what they looked like and how they were diagnosed.
 
 ---
+
+### `board.php` missing after the home page restructure
+**Symptom:** Visiting `board.php` (or logging in, which redirects there) showed "webpage isn't available" — the file didn't exist at all.
+**Cause:** When splitting the old `index.php` (the board) into a new `index.php` (home page) and `board.php` (the actual board), the instruction was to *rename* the original file — but the new home page content was pasted into `index.php` directly instead, without first saving a copy as `board.php`. The original board markup was never actually moved anywhere.
+**Fix:** Recreated `board.php` from scratch using the known-correct board markup, pointing to the existing, untouched `script.js` (which still contained all the real add/edit/delete/drag-and-drop logic).
+**Lesson:** When restructuring by "renaming" a file into two purposes, do the rename/copy *first*, then edit the new copy — editing in place risks losing the original content if a copy was never actually made.
+
+### Home page showing unstyled with a missing button
+**Symptom:** After confirming `index.php`'s code was correct (including the "Try it now" button and full CSS classes), the live page still showed no styling and was missing that button entirely.
+**Cause:** Browser was displaying a cached version of the page from before the demo button and new CSS rules were added — the same caching issue seen earlier in this project.
+**Fix:** Hard refresh (Ctrl/Cmd+Shift+R).
+**Lesson:** Still the most common false alarm in this project — if the code looks correct but the browser doesn't reflect it, hard-refresh before investigating further.
+
+
 ### Cards appeared to swap between users when testing with two tabs
 **Symptom:** Logged in as one user in one browser tab, then a different user in a second tab — refreshing the first tab showed the second user's cards instead of the first user's.
 **Cause:** Not an actual bug. PHP sessions are tied to the browser as a whole, not to individual tabs — logging in as a second user in one tab overwrites the session cookie for the *entire* browser, silently switching every open tab to that same logged-in user.
