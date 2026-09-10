@@ -687,3 +687,142 @@ a.site-logo {
   display: inline-block;
   margin-bottom: 20px;
 }
+
+.preview-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 32px 90px;
+  text-align: center;
+}
+
+.preview-section h2 {
+  font-family: var(--font-head);
+  font-size: 1.7rem;
+  margin: 0 0 12px;
+}
+
+.preview-section > p {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  max-width: 550px;
+  margin: 0 auto 36px;
+}
+
+.preview-frame {
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: 28px;
+  background: #F7F9FB;
+  box-shadow: 0 20px 50px rgba(20,30,45,0.08);
+}
+
+.mini-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  text-align: left;
+}
+
+.mini-col {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 12px;
+  min-height: 160px;
+}
+
+.mini-col h4 {
+  font-family: var(--font-head);
+  font-size: 0.78rem;
+  margin: 0 0 10px;
+  color: var(--ink-soft);
+}
+
+.mini-card {
+  background: #F6E58D;
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-size: 0.76rem;
+  margin-bottom: 8px;
+  box-shadow: 1px 2px 4px rgba(20,30,45,0.12);
+}
+
+.mini-card.blue { background: #A7D8F0; }
+.mini-card.green { background: #C9E8B8; }
+.mini-card.purple { background: #D6C6F2; }
+
+.faq-section {
+  background: #F7F9FB;
+  border-top: 1px solid var(--rule);
+  padding: 70px 32px;
+}
+
+.faq-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.faq-header h2 {
+  font-family: var(--font-head);
+  font-size: 1.7rem;
+  margin: 0 0 10px;
+}
+
+.faq-header p {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.faq-item {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question::after {
+  content: "+";
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+.faq-item.open .faq-question::after {
+  content: "−";
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  transition: max-height 200ms ease, padding 200ms ease;
+}
+
+.faq-item.open .faq-answer {
+  padding: 0 20px 18px;
+  max-height: 200px;
+}
+
+@media (max-width: 800px) {
+  .mini-board { grid-template-columns: repeat(2, 1fr); }
+}

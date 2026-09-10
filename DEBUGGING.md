@@ -3,6 +3,14 @@
 A record of real issues found and fixed while building this project, in the order they happened. Kept for learning purposes — most bugs here are common early-PHP/JS mistakes, and this is a reference for what they looked like and how they were diagnosed.
 
 ---
+
+### Homepage sections duplicated after pasting
+**Symptom:** "See it in action" and the features grid both appeared twice on the home page; the FAQ's click-to-expand script was also duplicated.
+**Cause:** New sections were pasted into `index.php` a second time, likely by pasting into the wrong spot or re-running an earlier paste, rather than replacing/extending the existing content once.
+**Fix:** Replaced the entire file content with one clean copy containing each section exactly once.
+**Lesson:** When adding a large block of new HTML, it's safer to view the whole file afterward (or search for a unique phrase from the new content) to confirm it appears exactly once, rather than assuming a paste succeeded cleanly.
+
+
 ### Back button styling wasn't applying despite correct-looking CSS
 **Symptom:** The "Back to home" button's text went bold as expected, but the gray background never appeared, even after confirming the CSS rule existed and hard-refreshing.
 **Cause:** CSS specificity conflict. An existing rule (`a.btn.ghost:link, a.btn.ghost:visited, a.btn.ghost:active { background: transparent; ... }`) was more specific than `.breadcrumb .btn.ghost` because it included the actual `a` element in the selector — so it won the "background" property even though it appeared earlier in the file. Written order doesn't decide the winner in CSS; specificity does.

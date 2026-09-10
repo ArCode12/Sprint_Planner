@@ -4,6 +4,12 @@ All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
 
+## Home page: board preview and FAQ
+- Added a static "See it in action" section showing a non-interactive mini preview of the board (5 sample columns with sticky-note style cards)
+- Added an FAQ section with 4 expandable questions, using a small inline script to toggle open/closed state
+- Fixed accidental duplication of both new sections and the FAQ script after a paste error
+- Added Google sign-in and a Stripe-based Pro tier to `PLANNING.md` as future phases, not yet started — both require infrastructure this local dev setup doesn't have (a public domain for Google OAuth, and a full Stripe integration plan)
+
 ## Navigation and Accessibility fixes 
 
 - Fixed a CSS specificity conflict where the "Back to home" button's background wasn't applying - gave it a dedicated '.back-btn' class instead of reusing '.btn.ghost', which was losing a specificity fight against another rule 
