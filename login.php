@@ -35,6 +35,7 @@
 
 <div class="auth-page">
   <div class="auth-card">
+    <a href="index.php" class="btn back-btn auth-back" aria-label="Back to home page">← Back to home</a>
     <h1>Log in</h1>
 
     <form method="POST" action="login.php">

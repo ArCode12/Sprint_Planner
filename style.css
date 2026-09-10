@@ -682,3 +682,8 @@ a.site-logo {
 .back-btn:hover {
   background: #E4E8EE !important;
 }
+
+.auth-back {
+  display: inline-block;
+  margin-bottom: 20px;
+}

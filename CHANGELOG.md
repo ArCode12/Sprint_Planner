@@ -12,6 +12,7 @@ All notable changes to this project, documented in the order they were built.
 - Added `guide.php` — a dedicated page explaining what sprint planning is (an article-style section) and a 5-step breakdown matching the board's actual columns (Backlog, To Do, Coding in progress, Testing in progress, Done)
 - Linked to it from the home page nav as "How it works"
 - Added reusable `.panel-section`, `.article`, `.process`, and `.section-eyebrow` styles, meant to scale to future content/template pages rather than being one-off styles for this page alone
+- Added a "Back to home" button to `login.php` and `signup.php` as well, using the same `.back-btn` styling as the guide page
 
 ## Public home page and demo board
 - Split the old `index.php` (which was the board) into `board.php` (the real, saving board) and a new `index.php` (a logged-out marketing home page)

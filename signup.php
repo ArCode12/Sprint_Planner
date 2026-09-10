@@ -45,7 +45,8 @@
 
 <div class="auth-page">
   <div class="auth-card">
-    <h1>Sign up</h1>
+    <a href="index.php" class="btn back-btn auth-back" aria-label="Back to home page">← Back to home</a>
+    <h1>Sign up</h1>>
 
     <form method="POST" action="signup.php">
       <div class="field">

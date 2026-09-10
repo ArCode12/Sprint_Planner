@@ -22,6 +22,9 @@ Roughly in the order they're expected to be tackled:
 - **Per-user data scoping** — currently, all cards are visible to everyone regardless of login; cards need a `user_id` (or `board_id`) so each user/team sees their own board
 - **Team collaboration** — inviting others to a shared board, multiple people editing the same board
 - **Restructuring `index.php`** into a proper landing/marketing page for logged-out visitors, with the board itself becoming a separate logged-in view/template
+- **Stripe-based Pro tier** — a paid plan with extra features, using Stripe for payment handling. Needs its own planning session before starting: what Pro actually unlocks, Stripe test-mode setup, webhook handling for payment events. Bigger scope than anything built so far — treat as its own project phase.
+
+Already completed, kept here for history: due dates/priority labels, per-user data scoping, and the `index.php`/`board.php` split into a marketing home page + real board — see `CHANGELOG.md` for details.
 
 ## Tech decisions
 
