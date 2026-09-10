@@ -91,5 +91,21 @@
   </section>
 </main>
 
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo-icon">S</span>
+      Sprint Planner
+    </div>
+    <nav class="footer-links">
+      <a href="guide.php">How it works</a>
+      <a href="demo.php">Try the demo</a>
+      <a href="login.php">Log in</a>
+      <a href="https://github.com/ArCode12/Sprint_Planner" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+  <p class="footer-copy">© 2026 Sprint Planner. Built as a learning project.</p>
+</footer>
+
 </body>
 </html>

@@ -4,6 +4,9 @@ All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
 
+## Site footer
+- Added a shared footer to `index.php` and `guide.php`: logo mark, links to the guide, demo, login, and the public GitHub repo, plus a small copyright line
+
 ## Home page: board preview and FAQ
 - Added a static "See it in action" section showing a non-interactive mini preview of the board (5 sample columns with sticky-note style cards)
 - Added an FAQ section with 4 expandable questions, using a small inline script to toggle open/closed state
