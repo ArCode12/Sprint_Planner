@@ -13,8 +13,12 @@
 
 <header class="site-header">
   <div class="site-header-inner">
-    <span class="site-logo">Sprint Planner</span>
+    <a href="index.php" class="site-logo">
+      <span class="logo-icon">S</span>
+      Sprint Planner
+    </a>
     <nav class="site-nav">
+      <a href="guide.php" class="site-link">How it works</a>
       <a href="login.php" class="btn ghost">Log in</a>
       <a href="signup.php" class="btn primary">Sign up</a>
     </nav>
@@ -22,6 +26,9 @@
 </header>
 
 <main>
+  <div class="breadcrumb">
+    <a href="index.php" class="btn back-btn" aria-label="Back to home page">← Back to home</a>
+  </div>
   <section class="panel-section">
     <article class="article">
       <p class="section-eyebrow">The basics</p>

@@ -3,6 +3,11 @@
 A record of real issues found and fixed while building this project, in the order they happened. Kept for learning purposes — most bugs here are common early-PHP/JS mistakes, and this is a reference for what they looked like and how they were diagnosed.
 
 ---
+### Back button styling wasn't applying despite correct-looking CSS
+**Symptom:** The "Back to home" button's text went bold as expected, but the gray background never appeared, even after confirming the CSS rule existed and hard-refreshing.
+**Cause:** CSS specificity conflict. An existing rule (`a.btn.ghost:link, a.btn.ghost:visited, a.btn.ghost:active { background: transparent; ... }`) was more specific than `.breadcrumb .btn.ghost` because it included the actual `a` element in the selector — so it won the "background" property even though it appeared earlier in the file. Written order doesn't decide the winner in CSS; specificity does.
+**Fix:** Gave the button its own dedicated class (`.back-btn`) instead of reusing `.btn.ghost`, so it no longer competes with the general button rules at all. Used `!important` deliberately and narrowly, only on this one small, self-contained class.
+**Lesson:** When a style seems to "partially" apply (some properties work, others don't), that's a strong sign of a specificity conflict between two rules, not a caching or typo issue — check for another selector targeting the same element with equal or higher specificity.
 
 ### `board.php` missing after the home page restructure
 **Symptom:** Visiting `board.php` (or logging in, which redirects there) showed "webpage isn't available" — the file didn't exist at all.

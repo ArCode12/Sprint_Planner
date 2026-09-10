@@ -4,7 +4,9 @@ All notable changes to this project, documented in the order they were built.
 
 ## Unreleased
 
-## Unreleased
+## Navigation and Accessibility fixes 
+
+- Fixed a CSS specificity conflict where the "Back to home" button's background wasn't applying - gave it a dedicated '.back-btn' class instead of reusing '.btn.ghost', which was losing a specificity fight against another rule 
 
 ## Sprint planning guide page
 - Added `guide.php` — a dedicated page explaining what sprint planning is (an article-style section) and a 5-step breakdown matching the board's actual columns (Backlog, To Do, Coding in progress, Testing in progress, Done)

@@ -5,7 +5,8 @@
     --paper: #FFFFFF; 
     --card: #FFFFFF; 
     --blue: #0B5FA5; 
-    --font-head: "space Grotesk", "Segoe UI", sans-serif; 
+    --blue-deep: #084A82;
+    --font-head: "Space Grotesk", "Segoe UI", sans-serif; 
     --font-body: "Inter", "Segoe UI", sans-serif; 
 }
 
@@ -278,12 +279,6 @@ button, input, textarea { font-family: inherit; }
 .btn.ghost { background: transparent; border-color: var(--rule); color: var(--ink-soft); }
 .btn.ghost:hover { background: #F1F3F6; color: var(--ink); }
 
-a.btn.ghost {
-  display: inline-block;
-  text-decoration: none;
-  border: 1px solid var(--rule);
-  font-weight: 500;
-}
 /* auth page */ 
 
 .auth-page {
@@ -402,12 +397,6 @@ a.btn.ghost {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.site-logo {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 1.3rem;
 }
 
 .site-nav {
@@ -620,14 +609,76 @@ a.btn.ghost {
   .process-steps { grid-template-columns: repeat(2, 1fr); }
 }
 
-.site-link {
-  font-size: 0.86rem;
-  color: var(--ink-soft);
+/* Explicit link-state overrides — prevents buttons/nav links from
+   reverting to default browser styling on hover, click, or after being visited */
+
+a.btn:link, a.btn:visited, a.btn:hover, a.btn:active {
   text-decoration: none;
-  margin-right: 4px;
 }
 
+a.btn.primary:link, a.btn.primary:visited, a.btn.primary:active {
+  color: #fff;
+  background: var(--blue);
+}
+a.btn.primary:hover {
+  color: #fff;
+  background: var(--blue-deep);
+}
+
+a.btn.ghost:link, a.btn.ghost:visited, a.btn.ghost:active {
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--rule);
+}
+a.btn.ghost:hover {
+  color: var(--ink);
+  background: #F1F3F6;
+}
+
+a.site-link:link, a.site-link:visited, a.site-link:active,
+.site-link {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 0.86rem;
+  margin-right: 4px;
+}
+a.site-link:hover,
 .site-link:hover {
   color: var(--ink);
 }
 
+a.site-logo {
+  text-decoration: none;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: var(--blue);
+  color: #fff;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.back-btn {
+  background: #F1F3F6 !important;
+  border: 1px solid var(--rule) !important;
+  color: var(--ink) !important;
+  font-weight: 600;
+}
+
+.back-btn:hover {
+  background: #E4E8EE !important;
+}
