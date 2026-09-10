@@ -22,6 +22,7 @@
   <div class="site-header-inner">
     <span class="site-logo">Sprint Planner</span>
     <nav class="site-nav">
+      <a href="guide.php" class="site-link">How it works</a>
       <a href="login.php" class="btn ghost">Log in</a>
       <a href="signup.php" class="btn primary">Sign up</a>
     </nav>
@@ -61,3 +62,4 @@
 
 </body>
 </html>
+
